@@ -12,6 +12,7 @@ app.use('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
 const { Champion } = require('./db')
+const db = require("./db")
 app.use('/api', async (req, res, next)=>{
   console.log('hahaha');
   const data = await Champion.findAll();
@@ -34,8 +35,9 @@ app.use((err, req, res, next) => {
 
 const PORT = (process.env.PORT || 8080)
 
-const init =  () =>{
+const init =  async () =>{
     try{
+        await db.sync();
         app.listen(PORT, ()=>{
             console.log(`listening on port ${PORT}`)
         })
