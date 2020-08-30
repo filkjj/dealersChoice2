@@ -1,8 +1,9 @@
 const router = require("express").Router()
 const path = require('path')
-const { Champion, ChampInfo} = require('../index')
+const { Champion, ChampInfo} = require('../db')
 
-router.get('/champions', async (req, res, next)=>{
+router.get('/', async (req, res, next)=>{
+    console.log('hahaha');
     const data = await Champion.findAll();
     res.send(data);
 })
