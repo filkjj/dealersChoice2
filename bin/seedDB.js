@@ -6,7 +6,7 @@ const lucianSplash = ['shorturl.at/noyDH','shorturl.at/gHNR3']
 
 const seed = async () =>{
     //delete everything
-await db.sync({force:true})
+
 
  //make rows on champion table
 const draven = await Champion.create({name:'Draven'})
