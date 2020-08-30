@@ -11,8 +11,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
+const { Champion } = require('./db')
+router.get('/api', async (req, res, next)=>{
+  console.log('hahaha');
+  const data = await Champion.findAll();
+  res.send(data);
+})
 
-app.use('/api', require('./routes/api'))
 console.log('REEEEEEEEEE');
 
 app.use((req, res, next) => {
