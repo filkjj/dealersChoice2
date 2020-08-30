@@ -1,4 +1,4 @@
-const {db , Champion, ChampInfo } = require('../server/index')
+const {db , Champion, ChampInfo } = require('../server/db/index')
 
 const dravenSplash = ['shorturl.at/mpvGP','shorturl.at/owCL3']
 const yasuoSplash = ['shorturl.at/gpFIK','shorturl.at/sNT36']
