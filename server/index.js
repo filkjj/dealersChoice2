@@ -8,6 +8,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/',(req, res, next) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
+})
+
 app.use('/', require('./routes/index'))
 console.log('REEEEEEEEEE');
 
