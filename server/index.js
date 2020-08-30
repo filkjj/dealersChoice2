@@ -36,7 +36,7 @@ const PORT = (process.env.PORT || 8080)
 
 const init =  async () =>{
     try{
-        await db.sync({force : false});
+        await db.sync();
         app.listen(PORT, ()=>{
             console.log(`listening on port ${PORT}`)
         })
