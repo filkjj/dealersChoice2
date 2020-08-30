@@ -1,5 +1,5 @@
 const {db} = require('./db')
-const { Champion, ChampInfo } = require('./models/Example')
+const { Champion, ChampInfo } = require('./models')
 
 module.exports = {
     db,
