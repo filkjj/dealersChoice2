@@ -10,7 +10,7 @@ const Champion = db.define('champion',{
 
 const ChampInfo = db.define('champInfo',{
     splashUrls : {
-        type : Sequelize.ARRAY,
+        type : Sequelize.ARRAY(Sequelize.STRING),
         allowNull : false
     }
 })
