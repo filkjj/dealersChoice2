@@ -12,7 +12,7 @@ app.use('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
 
-app.use('/', require('./routes/index'))
+app.use('/api', require('./routes/api'))
 console.log('REEEEEEEEEE');
 
 app.use((req, res, next) => {
