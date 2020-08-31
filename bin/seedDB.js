@@ -13,10 +13,14 @@ const draven = await Champion.create({name:'Draven'})
 const yasuo = await Champion.create({name:'Yasuo'})
 const lucian = await Champion.create({name:'Lucian'})
 
+const yasuoAbilities = ['YasQVal','YasWVal','YasEVal','YasRVal]']
+const dravenAbilities = ['dravenQVal','dravenWVal','dravenEVal','dravenRVal']
+const lucianAbilities = ['lucianQVal','lucianWVal','lucianEVal','lucianRVal']
+
 const champInfo = await Promise.all([
-    ChampInfo.create({splashUrls:yasuoSplash,champId:yasuo.id}),
-    ChampInfo.create({splashUrls:dravenSplash, champId:draven.id}),
-    ChampInfo.create({splashUrls:lucianSplash,champId:lucian.id})
+    ChampInfo.create({splashUrls:yasuoSplash,champId:yasuo.id,champAbilities:yasuoAbilities}),
+    ChampInfo.create({splashUrls:dravenSplash, champId:draven.id,champAbilities:dravenAbilities}),
+    ChampInfo.create({splashUrls:lucianSplash,champId:lucian.id,champAbilities:lucianAbilities})
 ])
 
 console.log('Seed Successful!')

@@ -8,7 +8,7 @@ export default class App extends React.Component {
 		this.state = {
 			champId : '',
 			champList : [],
-			urlList : []
+			chosenChamp : {}
 		}
 		this.populateChampionsURLs = this.populateChampionsURLs.bind(this)
 	}
@@ -27,32 +27,43 @@ export default class App extends React.Component {
 			loadChampion();
 		}
 		else {
-		  this.setState({ champId: champList[0].id });
+		  this.setState({ champId: 1 });
 		}
+		this.populateChampionsURLs(this.state.champId)
+		this.populatBottomImages()
 	}
 
 	async populateChampionsURLs(champ_id){
-		const urlList = (await axios.get(`/api/championInfo/${champ_id}`)).data[0].splashUrls
-		this.setState({urlList})
+		const chosenChamp = (await axios.get(`/api/championInfo/${champ_id}`)).data[0]
+		this.setState({chosenChamp})
 	}
 
+	populatBottomImages(){
+		if(Object.keys(this.state.chosenChamp).length){
+			return (this.state.chosenChamp.splashUrls.map(splashUrl =>
+				<div className='bottomHolder'><img classname='bottomImg' src={splashUrl}></img></div>
+			))
+		}else{
+			return (<div></div> )
+		}
+	}
 
 	render(){
 		return(
-			<>
+			<> 
 				<div className='leftCol'>
 					{this.state.champList.map(champ => (<a href={`#${champ.id}`} className='champList' onClick={()=>{this.populateChampionsURLs(champ.id)}}> {champ.name} </a>))}
 				</div>	
 				<div className='centerBox'>
 					<div className='urlViewer'>
 						{/* get the url that's chosen */}
+						<div className='middleCols'>asdasd</div>
+						<div className='middleCols'>champ name</div>
+						<div className='middleCols'>champ abilities</div>
 					</div>
 					<div id='imgContainer'>
 						{/* get current champ chosen and display urls */}
-						{this.state.urlList.map(champUrl => 
-						<div classname='urlImage'> 
-							<img src={champUrl}></img>
-						</div>)}
+						{this.populatBottomImages()}
 					</div>
 				</div> 
 			</>

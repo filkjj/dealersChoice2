@@ -12,7 +12,8 @@ const ChampInfo = db.define('champinfo',{
     splashUrls : {
         type : Sequelize.ARRAY(Sequelize.STRING)
     },
-    champId : Sequelize.INTEGER
+    champId : Sequelize.INTEGER,
+    champAbilities : Sequelize.ARRAY(Sequelize.STRING)
 })
 
 module.exports =  {Champion, ChampInfo} 
