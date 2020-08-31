@@ -11,7 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
-const { Champion, db } = require('./db')
+
+const { Champion } = require('./db')
 app.use('/api', async (req, res, next)=>{
   console.log('hahaha');
   const data = await Champion.findAll();

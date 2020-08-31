@@ -15,4 +15,4 @@ const ChampInfo = db.define('champInfo',{
     }
 })
 
-module.exports = { Champion, ChampInfo }
+module.exports =  Champion, ChampInfo 

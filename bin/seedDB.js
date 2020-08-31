@@ -17,6 +17,7 @@ await ChampInfo.create({splashUrls:dravenSplash,champID:draven.id})
 await ChampInfo.create({splashUrls:yasuoSplash,champID:yasuo.id})
 await ChampInfo.create({splashUrls:lucianSplash,champID:lucian.id})
 
+db.close();
 console.log('Seed Successful!')
 }
 
