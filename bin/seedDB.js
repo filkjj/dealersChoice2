@@ -1,8 +1,8 @@
 const {db , Champion, ChampInfo } = require('../server/db/index')
 
-const dravenSplash = ['shorturl.at/mpvGP','shorturl.at/owCL3']
-const yasuoSplash = ['shorturl.at/gpFIK','shorturl.at/sNT36']
-const lucianSplash = ['shorturl.at/noyDH','shorturl.at/gHNR3']
+const dravenSplash = ['https://vignette.wikia.nocookie.net/leagueoflegends/images/8/82/Draven_OriginalSkin.jpg/revision/latest?cb=20181021105629','https://vignette.wikia.nocookie.net/leagueoflegends/images/b/bd/Draven_SoulReaverSkin.jpg/revision/latest?cb=20181021080609']
+const yasuoSplash = ['https://vignette.wikia.nocookie.net/leagueoflegends/images/3/39/Yasuo_OriginalSkin.jpg/revision/latest?cb=20181021032917','https://vignette.wikia.nocookie.net/leagueoflegends/images/0/0e/Yasuo_TrueDamageSkin.jpg/revision/latest?cb=20191030034050']
+const lucianSplash = ['https://vignette.wikia.nocookie.net/leagueoflegends/images/1/1f/Lucian_OriginalSkin.jpg/revision/latest?cb=20181021041635','https://vignette.wikia.nocookie.net/leagueoflegends/images/8/8e/Lucian_DemaciaViceSkin.jpg/revision/latest?cb=20190701214425']
 
 const seed = async () =>{
 //delete everything

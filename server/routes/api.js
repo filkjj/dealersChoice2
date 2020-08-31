@@ -24,7 +24,7 @@ router.get('/championInfo/', async (req, res, next)=>{
 router.get('/championInfo/:champId', async (req, res, next)=>{
     const data = await ChampInfo.findAll({
         where:
-        {id : req.params.champId}
+        {champId : req.params.champId}
     });
     res.send(data);
 })
