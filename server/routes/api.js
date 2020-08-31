@@ -8,6 +8,7 @@ router.get('/champions', async (req, res, next)=>{
 })
 
 router.get('/champions/:champId', async (req, res, next)=>{
+    
     const data = await Champion.findAll({
         where:
         {id : req.params.champId}
@@ -17,6 +18,14 @@ router.get('/champions/:champId', async (req, res, next)=>{
 
 router.get('/championInfo/', async (req, res, next)=>{
     const data = await ChampInfo.findAll();
+    res.send(data);
+})
+
+router.get('/championInfo/:champId', async (req, res, next)=>{
+    const data = await ChampInfo.findAll({
+        where:
+        {id : req.params.champId}
+    });
     res.send(data);
 })
 module.exports =  router 
