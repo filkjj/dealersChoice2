@@ -7,9 +7,21 @@ router.get('/champions', async (req, res, next)=>{
     res.send(data);
 })
 
-router.get('/champions/:id', async (req, res, next)=>{
-    const data = await Champion.find({where:{id:req.params.id}});
+router.get('/champions/:champId', async (req, res, next)=>{
+    
+    const data = await Champion.findAll({
+        where:
+        {id : req.params.champId}
+    });
     res.send(data);
 })
 
+router.get('/championInfo/:champId', async (req, res, next)=>{
+    
+    const data = await ChampInfo.findAll({
+        where:
+        {champId : req.params.champId}
+    });
+    res.send(data);
+})
 module.exports =  router 
