@@ -11,14 +11,15 @@ await db.sync({force:true})
  //make rows on champion table
 const draven = await Champion.create({name:'Draven'})
 const yasuo = await Champion.create({name:'Yasuo'})
-const lucian = await Champion.create({name:'lucian'})
+const lucian = await Champion.create({name:'Lucian'})
 
-await ChampInfo.create({splashUrls:dravenSplash,champID:draven.id})
-await ChampInfo.create({splashUrls:yasuoSplash,champID:yasuo.id})
-await ChampInfo.create({splashUrls:lucianSplash,champID:lucian.id})
+const champInfo = await Promise.all([
+    ChampInfo.create({splashUrls:yasuoSplash,champId:yasuo.id}),
+    ChampInfo.create({splashUrls:dravenSplash, champId:draven.id}),
+    ChampInfo.create({splashUrls:lucianSplash,champId:lucian.id})
+])
 
-db.close();
 console.log('Seed Successful!')
 }
 
-seed()
+module.exports = { seed }

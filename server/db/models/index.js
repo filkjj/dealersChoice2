@@ -8,11 +8,11 @@ const Champion = db.define('champion',{
     }
 })
 
-const ChampInfo = db.define('champInfo',{
+const ChampInfo = db.define('champinfo',{
     splashUrls : {
-        type : Sequelize.ARRAY(Sequelize.STRING),
-        allowNull : false
-    }
+        type : Sequelize.ARRAY(Sequelize.STRING)
+    },
+    champId : Sequelize.INTEGER
 })
 
-module.exports =  Champion, ChampInfo 
+module.exports =  {Champion, ChampInfo} 

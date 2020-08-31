@@ -8,12 +8,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/',(req, res, next) => {
+app.get('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
 
 const { Champion } = require('./db')
-app.use('/api', async (req, res, next)=>{
+app.get('/api', async (req, res, next)=>{
   console.log('hahaha');
   const data = await Champion.findAll();
   res.send(data);
@@ -35,9 +35,11 @@ app.use((err, req, res, next) => {
 
 const PORT = (process.env.PORT || 8080)
 
+
+const { seed } = require('../bin/seedDB')
 const init =  async () =>{
     try{
-        await db.sync();
+        await seed();
         app.listen(PORT, ()=>{
             console.log(`listening on port ${PORT}`)
         })

@@ -5,10 +5,10 @@
 	"main": "server/index.js",
 	"scripts": {
 		"test": "mocha \"**/*.spec.js\"",
-		"seed" :  "node bin/seedDB.js",
+		"seed": "node bin/seedDB.js",
 		"build": "webpack",
 		"build:dev": "webpack -w",
-		"start": "npm run seed && node server/index.js",
+		"start": "node server/index.js",
 		"start:dev": "npm run build && nodemon --ignore client --ignore server/public"
 	},
 	"author": "",
