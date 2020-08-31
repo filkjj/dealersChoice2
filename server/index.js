@@ -7,19 +7,12 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/api', require('./routes/api'))
 
 app.get('/',(req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
 })
 
-const { Champion } = require('./db')
-app.get('/api', async (req, res, next)=>{
-  console.log('hahaha');
-  const data = await Champion.findAll();
-  res.send(data);
-})
-
-console.log('REEEEEEEEEE');
 
 app.use((req, res, next) => {
     if (path.extname(req.path).length > 0) {

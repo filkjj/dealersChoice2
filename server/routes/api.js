@@ -3,7 +3,6 @@ const path = require('path')
 const { Champion, ChampInfo} = require('../db')
 
 router.get('/', async (req, res, next)=>{
-    console.log('hahaha');
     const data = await Champion.findAll();
     res.send(data);
 })
