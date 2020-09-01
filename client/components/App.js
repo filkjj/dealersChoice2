@@ -74,7 +74,7 @@ export default class App extends React.Component {
 	renderURLViewer(){
 		if(this.state.chosenDisplay==='abilities'){
 		console.log(this.state)
-		return this.state.thingToDisplay==='' ? (<div>click on something below!</div>) : (<video controls><source src={this.state.thingToDisplay} type="video/webm" /> </video>)
+		return this.state.thingToDisplay==='' ? (<div>click on something below!</div>) : (<video autoPlay={false} controls><source src={this.state.thingToDisplay} type="video/webm" /> </video>)
 		}else if(this.state.chosenDisplay==='splashes'){
 			return this.state.thingToDisplay==='' ? (<div>click on something below!</div>) : <img src={this.state.thingToDisplay} />
 		}else{
