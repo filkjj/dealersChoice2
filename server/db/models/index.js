@@ -13,7 +13,8 @@ const ChampInfo = db.define('champinfo',{
         type : Sequelize.ARRAY(Sequelize.STRING)
     },
     champId : Sequelize.INTEGER,
-    champAbilities : Sequelize.ARRAY(Sequelize.STRING)
+    champAbilities : Sequelize.ARRAY(Sequelize.STRING),
+    name : Sequelize.STRING
 })
 
 module.exports =  {Champion, ChampInfo} 

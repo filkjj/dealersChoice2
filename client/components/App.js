@@ -1,6 +1,6 @@
 import React from "react"
 import axios from 'axios'
-
+import MiddleCols from './MiddleCols'
 
 export default class App extends React.Component {
 	constructor(){
@@ -8,9 +8,13 @@ export default class App extends React.Component {
 		this.state = {
 			champId : '',
 			champList : [],
-			chosenChamp : {}
+			chosenChamp : {},
+			chosenDisplay : '',
+			thingToDisplay: ''
 		}
 		this.populateChampionsURLs = this.populateChampionsURLs.bind(this)
+		this.selectDisplay = this.selectDisplay.bind(this)
+		this.selectThingToDisplay = this.selectThingToDisplay.bind(this)
 	}
 
 	async componentDidMount(){
@@ -30,23 +34,54 @@ export default class App extends React.Component {
 		  this.setState({ champId: 1 });
 		}
 		this.populateChampionsURLs(this.state.champId)
-		this.populatBottomImages()
+		this.populateBottomImages()
 	}
 
 	async populateChampionsURLs(champ_id){
 		const chosenChamp = (await axios.get(`/api/championInfo/${champ_id}`)).data[0]
-		this.setState({chosenChamp})
+		this.setState({chosenChamp,chosenDisplay : '',thingToDisplay: ''})
 	}
 
-	populatBottomImages(){
-		if(Object.keys(this.state.chosenChamp).length){
+	selectDisplay(chosenDisplay){
+		this.setState({chosenDisplay})
+	}
+
+	selectThingToDisplay(urlToDisplay){
+		this.setState({thingToDisplay:urlToDisplay})
+	}
+
+	//this is so janky and im so sorry you have to read this LOL, there is a lot of refactoring I would do to this but I ran out of time
+	populateBottomImages(){
+		if(this.state.chosenDisplay==='abilities'){
+			return(
+				// i couldnt figure out why the switching of the video wasn't working properly so you have to reload the list of abilities everytime you go into it :/
+				<>
+				<div className='bottomHolder'><div classname='bottomAbility' onClick={()=>this.selectThingToDisplay(this.state.chosenChamp.champAbilities[0])}>Q</div></div>
+				<div className='bottomHolder'><div classname='bottomAbility' onClick={()=>this.selectThingToDisplay(this.state.chosenChamp.champAbilities[1])}>W</div></div>
+				<div className='bottomHolder'><div classname='bottomAbility' onClick={()=>this.selectThingToDisplay(this.state.chosenChamp.champAbilities[2])}>E</div></div>
+				<div className='bottomHolder'><div classname='bottomAbility' onClick={()=>this.selectThingToDisplay(this.state.chosenChamp.champAbilities[3])}>R</div></div>
+				</>
+			)
+		}else if(this.state.chosenDisplay==='splashes'){
 			return (this.state.chosenChamp.splashUrls.map(splashUrl =>
-				<div className='bottomHolder'><img classname='bottomImg' src={splashUrl}></img></div>
+				<div className='bottomHolder'><img classname='bottomImg' src={splashUrl} onClick={()=>this.selectThingToDisplay(splashUrl)}></img></div>
 			))
 		}else{
 			return (<div></div> )
 		}
 	}
+
+	renderURLViewer(){
+		if(this.state.chosenDisplay==='abilities'){
+		console.log(this.state)
+		return this.state.thingToDisplay==='' ? (<div>click on something below!</div>) : (<video controls><source src={this.state.thingToDisplay} type="video/webm" /> </video>)
+		}else if(this.state.chosenDisplay==='splashes'){
+			return this.state.thingToDisplay==='' ? (<div>click on something below!</div>) : <img src={this.state.thingToDisplay} />
+		}else{
+			return (<MiddleCols champName={this.state.chosenChamp.name} selectDisplay={this.selectDisplay} />)			
+		}
+	}
+
 
 	render(){
 		return(
@@ -57,13 +92,12 @@ export default class App extends React.Component {
 				<div className='centerBox'>
 					<div className='urlViewer'>
 						{/* get the url that's chosen */}
-						<div className='middleCols'>asdasd</div>
-						<div className='middleCols'>champ name</div>
-						<div className='middleCols'>champ abilities</div>
+						{this.renderURLViewer()}
+						
 					</div>
 					<div id='imgContainer'>
 						{/* get current champ chosen and display urls */}
-						{this.populatBottomImages()}
+						{this.populateBottomImages()}
 					</div>
 				</div> 
 			</>
