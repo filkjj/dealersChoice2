@@ -1,20 +1,37 @@
 const Sequelize = require("sequelize") 
 const { db }  = require("../db")
 
-const Champion = db.define('champion',{
+const SongList = db.define('songlist',{
     name : {
-        type:   Sequelize.STRING,
-        allowNull : false
-    }
-})
-
-const ChampInfo = db.define('champinfo',{
-    splashUrls : {
-        type : Sequelize.ARRAY(Sequelize.STRING)
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    champId : Sequelize.INTEGER,
-    champAbilities : Sequelize.ARRAY(Sequelize.STRING),
-    name : Sequelize.STRING
-})
+    songURL : {
+      type: Sequelize.STRING,
+      allowNull: true
+    }
+  })
 
-module.exports =  {Champion, ChampInfo} 
+const syncAndSeed = async()=> {
+    await db.sync({ force: true });
+    
+    await SongList.create({
+      name : "somesong1",
+      songURL : "somesong1URL"
+    })
+    await SongList.create({
+      name : "somesong3",
+      songURL : "somesong3URL"
+    })
+    await SongList.create({
+      name : "somesong2",
+      songURL : "somesong2URL"
+    })
+  
+  };
+  
+  module.exports = {
+    syncAndSeed,
+    SongList
+  };
+  

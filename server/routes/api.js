@@ -1,31 +1,20 @@
 const router = require("express").Router()
-const path = require('path')
-const { Champion, ChampInfo} = require('../db')
+const {SongList} = require('../db/index')
 
-router.get('/champions', async (req, res, next)=>{
-    const data = await Champion.findAll();
-    res.send(data);
+router.get('/', async (req,res,next)=>{
+    const data = await SongList.findAll()
+    res.send(data)
 })
 
-router.get('/champions/:champId', async (req, res, next)=>{
-    
-    const data = await Champion.findAll({
-        where:
-        {id : req.params.champId}
-    });
-    res.send(data);
+router.get('/:id', async (req,res,next)=>{
+    const data = await SongList.findByPk(req.params.id)
+    res.send(data)
 })
 
-router.get('/championInfo/', async (req, res, next)=>{
-    const data = await ChampInfo.findAll();
-    res.send(data);
+router.delete('/:id', async(req,res,next)=>{
+    const data = await SongList.findByPk(req.params.id)
+    const destroyedData = await data.destroy()
+    res.send(destroyedData)
 })
 
-router.get('/championInfo/:champId', async (req, res, next)=>{
-    const data = await ChampInfo.findAll({
-        where:
-        {champId : req.params.champId}
-    });
-    res.send(data);
-})
-module.exports =  router 
+module.exports = router

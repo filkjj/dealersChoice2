@@ -1,15 +1,13 @@
 {
-	"name": "dealers-choice",
+	"name": "dealers-choice-2",
 	"version": "1.0.0",
 	"description": "",
 	"main": "server/index.js",
 	"scripts": {
-		"test": "mocha \"**/*.spec.js\"",
-		"seed": "node bin/seedDB.js",
 		"build": "webpack",
-		"build:dev": "webpack -w",
+		"build:dev": "webpack -w --mode=development",
 		"start": "node server/index.js",
-		"start:dev": "npm run build && nodemon --ignore client --ignore server/public"
+		"start:dev": "npm run build:dev & nodemon --ignore client --ignore server/public"
 	},
 	"author": "",
 	"license": "ISC",
@@ -20,11 +18,16 @@
 		"pg": "^8.3.3",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-redux": "^7.2.1",
+		"react-router": "^5.2.0",
+		"react-router-dom": "^5.2.0",
+		"redux": "^4.0.5",
+		"redux-devtools-extension": "^2.13.8",
+		"redux-logger": "^3.0.6",
+		"redux-thunk": "^2.3.0",
 		"sequelize": "^6.3.4"
 	},
 	"devDependencies": {
-		"chai": "^4.2.0",
-		"mocha": "^8.1.2",
 		"nodemon": "^2.0.4",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12",
